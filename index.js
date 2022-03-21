@@ -7,12 +7,12 @@ class Agels {
       this.trow = document.createElement('tr');
     }
 
-    tabel(){
+    tabel(app){
       let mytable = document.createElement("table");
       let mythead = this.thed;
       let myTbody = this.tbody;
       let trow = this.trow;
-      document.getElementById('app').appendChild(mytable);
+      app.appendChild(mytable);
 
       mytable.setAttribute("class","table table-dark table-hover");
       document.getElementById("app").classList.add("col-lg-6");
@@ -38,35 +38,55 @@ class Agels {
     }
 
     body(){
+        // DATA DINAMIS
         const td = this.colum.data;
+        td.forEach(el => {   
+            
+            const tr = document.createElement('tr');
+            let myTbody = this.tbody;
+              
+          el.forEach(child => {
+          
+            let tdd = document.createElement("td");
+            tr.appendChild(tdd)
+            myTbody.appendChild(tr)
+          
+            tdd.innerHTML += child;
+            let data = document.body.appendChild(tdd)
+            
+            tr.appendChild(data)
+          })
+             // DATA STATIS
 
-        td.forEach(el => {
-          let data = ` 
-                        <tr>
-                            <td>${el[0]}</td>
-                            <td>${el[1]}</td>
-                            <td>${el[2]}</td>
-                        </tr>
-                      `;
-          this.tbody.innerHTML += data;
-        });
-      }
-    }
+          //       // const data = ` 
+          //       //               <tr>
+          //       //                   <td>${child[0]}</td>
+          //       //                   <td>${child[1]}</td>
+          //       //                   <td>${child[2]}</td>
+          //       //               </tr>
+          //       //             `;
+          //       // this.tbody.innerHTML += data;
+              
+              });
+           }
+        }
+      
 
     function show(){
-      agels.tabel();
       agels.header();
       agels.body();
     }
 
   const agels = new Agels({
-    colums: ["Name", "Email", "Phone Number"],
+    colums: ["Name", "Email", "Phone Number","City"],
     data: [
-      ["John", "john@example.com", "(353) 01 222 3333"],
-      ["Takfor", "takfor@gmail.com", "(01) 22 888 4444"],
-      ["Mark", "mark@gmail.com", "(01) 22 888 555"]
+      ["John", "john@example.com", "(353) 01 222 3333","New York"],
+      ["Takfor", "takfor@gmail.com", "(01) 22 888 4444","Las vegas"],
+      ["Mark", "mark@gmail.com", "(01) 22 888 555","orlando"]
     ]
   });
 
+  const id = document.getElementById('app');
+  agels.tabel(app)
   show();
   
