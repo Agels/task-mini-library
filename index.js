@@ -42,7 +42,7 @@ class Agels {
         const td = this.colum.data;
         td.forEach(el => {   
             
-            const tr = document.createElement('tr');
+            let tr = document.createElement('tr');
             let myTbody = this.tbody;
               
           el.forEach(child => {
@@ -52,7 +52,7 @@ class Agels {
             myTbody.appendChild(tr)
           
             tdd.innerHTML += child;
-            let data = document.body.appendChild(tdd)
+            const data = document.body.appendChild(tdd)
             
             tr.appendChild(data)
           })
